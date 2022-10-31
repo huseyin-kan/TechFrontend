@@ -60,7 +60,7 @@ export default class Header extends Component {
               />
             </div>
           </form>
-          <div className="px-2">
+          <div className="px-3">
           <MenuIcon/>
           </div>
           <div className="">
