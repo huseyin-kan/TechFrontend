@@ -1,13 +1,26 @@
-import React, { Component } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
 import MenuItems from "./MenuItems";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ProfileItems from "./ProfileItems";
 
-export default class Header extends Component {
-  render() {
+ const Header =()=> {
+
+
+    const [active,setActive]=useState(false)
+    const [isOpen,setIsOpen]=useState(false)
+
+    const  showProfile=()=>{
+      setIsOpen(!isOpen)
+    }
+
+    const showMenu=()=>{
+      setActive(!active)
+    }
+
     return (
-      <div className="fixed w-full text-white justify-between p-3 items-center flex bg-gray-700">
+      <div className="fixed w-full text-white justify-between p-2 items-center flex bg-gray-700">
         <div className=" font-bold text-center uppercase">
           <h1>
             e<span className="">Commerce</span>
@@ -60,14 +73,16 @@ export default class Header extends Component {
               />
             </div>
           </form>
-          <div className="px-3">
-          <MenuIcon/>
+          <div className="px-2 md:hidden">
+          <MenuIcon onClick={showMenu} />
           </div>
+          <MenuItems showMenu={showMenu} active={active}/>
           <div className="">
-            <AccountCircleIcon />
+            <AccountCircleIcon onClick={showProfile} className="hover:cursor-pointer"/>
           </div>
+          <ProfileItems showProfile={showProfile} isOpen={isOpen} />
         </div>
       </div>
     );
   }
-}
+export default Header;
