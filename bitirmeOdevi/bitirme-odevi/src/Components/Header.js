@@ -20,10 +20,10 @@ import ProfileItems from "./ProfileItems";
     }
 
     return (
-      <div className="fixed w-full text-white justify-between p-2 items-center flex bg-gray-700">
+      <div className="fixed w-full text-white justify-between p-2 items-center flex bg-gray-700 shadow shadow-gray-700">
         <div className=" font-bold text-center uppercase">
           <h1>
-            e<span className="">Commerce</span>
+            e<span className="">Ticaret</span>
           </h1>
         </div>
         <nav>

@@ -21,6 +21,9 @@ module.exports = {
       },
       backgroundImage:{
         'background-image':'url("./background/wallpaper.jpg")'
+      },
+      height:{
+        '112':'28rem'
       }
     },
   },
