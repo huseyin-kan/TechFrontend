@@ -4,7 +4,7 @@ const ProductInfo = () => {
   return (
     <div className="container h-full mx-auto pt-16 w-2/3 bg-gray-600/90">
       <div className="p-4">
-        <h1>Ürün Bilgisi</h1>
+        <h1 className="text-2xl">Ürün Bilgisi</h1>
       </div>
       <div className="flex flex-row w-11/12 bg-gray-500/70 rounded p-4 h-[28rem] mx-auto">
         <div className="basis-2/5 p-4 shadow">
@@ -86,7 +86,7 @@ const ProductInfo = () => {
               <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
                 5.0
               </span></div>
-                <div><button className="border-2 px-4 py-2 rounded border-yellow-200 bg-yellow-300 hover:bg-transparent hover:text-gray-200 hover:border-gray-200">11500₺</button></div>
+                <div><button className="border-2 px-4 py-2 rounded border-yellow-200 bg-yellow-300 transition hover:bg-transparent duration-300 hover:text-gray-200 hover:border-gray-200">11500₺</button></div>
           </div>
         </div>
       </div>

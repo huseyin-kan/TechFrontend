@@ -25,7 +25,7 @@ const Products = () => {
         
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">
         <div className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600">
-          <a href="/">
+          <a href="/product">
             <img
               className="p-8 rounded-t-lg"
               src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/apple-watch-ultra-og-202209_GEO_TR?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1661384392247"

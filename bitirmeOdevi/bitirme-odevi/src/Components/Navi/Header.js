@@ -4,6 +4,7 @@ import MenuItems from "./MenuItems";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ProfileItems from "./ProfileItems";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
  const Header =()=> {
 
@@ -23,8 +24,9 @@ import ProfileItems from "./ProfileItems";
       <div className="fixed w-full text-white justify-between p-2 items-center flex bg-gray-700 shadow shadow-gray-700">
         <div className=" font-bold text-center uppercase">
           <h1>
-            e<span className="">Ticaret</span>
+            <a href="/">e<span className="text-sky-800">Ticaret</span></a>
           </h1>
+
         </div>
         <nav>
           <ul className="hidden md:flex gap-8 p-4 bg-gray-700/20">
@@ -77,7 +79,8 @@ import ProfileItems from "./ProfileItems";
           <MenuIcon onClick={showMenu} />
           </div>
           <MenuItems showMenu={showMenu} active={active}/>
-          <div className="">
+          <a href="/cart" className=""><ShoppingCartOutlinedIcon/></a>
+          <div className="ml-2">
             <AccountCircleIcon onClick={showProfile} className="hover:cursor-pointer"/>
           </div>
           <ProfileItems showProfile={showProfile} isOpen={isOpen} />

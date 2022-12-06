@@ -14,14 +14,14 @@ const ProfileItems = ({ isOpen, showProfile }) => {
       >
         <CloseIcon onClick={showProfile} className="absolute inset-2" />
         <li>
-          <Link>Hesap</Link>
+          <a href="/profile">Hesap</a>
         </li>
         <li>
-          <Link>Siparişler</Link>
+          <a href="/order">Siparişler</a>
         </li>
         <br className=""></br>
         <li className="pt-4">
-          <Link>Çıkış Yap</Link>
+          <a href="/login">Giriş Yap</a>
         </li>
       </ul>
     </div>
