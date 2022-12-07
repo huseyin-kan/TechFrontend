@@ -5,13 +5,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ProfileItems from "./ProfileItems";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Peripherals from "./Peripherals";
+import SignOutProfileItems from "./SignOutProfileItems";
 
  const Header =()=> {
 
-
+  const [open,setOpen]=useState(false);
     const [active,setActive]=useState(false)
     const [isOpen,setIsOpen]=useState(false)
-
+    const [isAuthenticated, setIsAuthenticated] = useState(true)
     const  showProfile=()=>{
       setIsOpen(!isOpen)
     }
@@ -19,6 +22,19 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
     const showMenu=()=>{
       setActive(!active)
     }
+    
+
+    const showPeripheral = ()=>{
+    setOpen(!open)
+  }
+
+    function handleSignOut() {
+      setIsAuthenticated(false);
+    }
+    function handleSignIn() {
+      setIsAuthenticated(true);
+    }
+
 
     return (
       <div className="fixed w-full text-white justify-between p-2 items-center flex bg-gray-700 shadow shadow-gray-700">
@@ -30,26 +46,30 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
         </div>
         <nav>
           <ul className="hidden md:flex gap-8 p-4 bg-gray-700/20">
-            <li>
+            <li className="hover:text-slate-200">
               <Link>Laptop</Link>
             </li>
-            <li>
+            <li className="hover:text-slate-200">
               <Link>Televizyon</Link>
             </li>
-            <li>
+            <li className="hover:text-slate-200">
               <Link>Kulaklık</Link>
             </li>
-            <li>
-              <Link>Çevre Birimleri</Link>
+            <li className="hover:text-slate-200">
+              <Link>Çevre Birimleri <button
+              onClick={showPeripheral}
+            >
+              <KeyboardArrowDownIcon />
+            </button>
+            <Peripherals showPeripherals={showPeripheral} open={open}/></Link>
             </li>
-            <li>
+            <li className="hover:text-slate-200">
               <Link>Telefon</Link>
             </li>
-            <li>
+            <li className="hover:text-slate-200">
               <Link>Konsol</Link>
             </li>
           </ul>
-          {/* <MenuItems /> */}
         </nav>
         <div className="flex items-center">
           <form className="max-w-sm px-4">
@@ -83,9 +103,11 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
           <div className="ml-2">
             <AccountCircleIcon onClick={showProfile} className="hover:cursor-pointer"/>
           </div>
-          <ProfileItems showProfile={showProfile} isOpen={isOpen} />
+          {isAuthenticated?<ProfileItems signOut={handleSignOut} showProfile={showProfile} isOpen={isOpen} />:<SignOutProfileItems signIn={handleSignIn} showProfile={showProfile} isOpen={isOpen} />}
+          
         </div>
       </div>
     );
   }
 export default Header;
+

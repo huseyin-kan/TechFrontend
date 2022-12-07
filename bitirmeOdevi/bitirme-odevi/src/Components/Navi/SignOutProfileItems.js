@@ -1,7 +1,7 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ProfileItems = (props) => {
+const SignOutProfileItems = (props) => {
   return (
     <div>
       <ul
@@ -12,22 +12,16 @@ const ProfileItems = (props) => {
         }
       >
         <CloseIcon onClick={props.showProfile} className="absolute inset-2" />
-        <li>
-          <a href="/profile">Hesap</a>
-        </li>
-        <li>
-          <a href="/order">Siparişler</a>
-        </li>
-        <li>
-          <a href="/order">Kartlar</a>
+        <li onClick={props.signIn} >
+          <a href="/login">Giriş Yap</a>
         </li>
         <br className=""></br>
-        <li className="pt-4  hover:cursor-pointer" onClick={props.signOut}>
-          <a href="/" >Çıkış Yap</a>
+        <li className="pt-4">
+          <a href="/sign"><span className="text-gray-700 underline decoration-gray-700 underline-offset-4 lowercase">Hesabın yok mu?</span> Kayıt ol</a>
         </li>
       </ul>
     </div>
   );
 };
 
-export default ProfileItems;
+export default SignOutProfileItems;

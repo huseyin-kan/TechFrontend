@@ -1,12 +1,11 @@
 import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { Link } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Cart = () => {
   return (
-    <div className="container h-full mx-auto pt-16 w-2/3 bg-gray-600/90">
+    <div className="container absolute top-1/4 left-60 w-2/3 bg-gray-600/90 rounded">
       <div className="p-4 flex justify-between items-center">
         <h1 className="text-2xl">
           Sepet <ShoppingCartOutlinedIcon />
