@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate,useEffect } from "react-router-dom";
 import MenuItems from "./MenuItems";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -8,6 +8,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Peripherals from "./Peripherals";
 import SignOutProfileItems from "./SignOutProfileItems";
+import ProductService from "../../Services/productService";
+
 
  const Header =()=> {
 
@@ -15,27 +17,32 @@ import SignOutProfileItems from "./SignOutProfileItems";
     const [active,setActive]=useState(false)
     const [isOpen,setIsOpen]=useState(false)
     const [isAuthenticated, setIsAuthenticated] = useState(true)
+    // const [products, setProducts] = useState([]);
+
+    // useEffect(() => {
+    //   let productService = new ProductService();
+    //   productService
+    //     .getProductsByCategoryId()
+    //     .then((result) => setProducts(result.data.data));
+    // }, []);
+    const navigate = useNavigate()
     const  showProfile=()=>{
       setIsOpen(!isOpen)
+      
     }
-
     const showMenu=()=>{
       setActive(!active)
     }
-    
-
     const showPeripheral = ()=>{
     setOpen(!open)
   }
-
     function handleSignOut() {
       setIsAuthenticated(false);
+      navigate("/")
     }
     function handleSignIn() {
       setIsAuthenticated(true);
     }
-
-
     return (
       <div className="fixed w-full text-white justify-between p-2 items-center flex bg-gray-700 shadow shadow-gray-700">
         <div className=" font-bold text-center uppercase">
@@ -47,27 +54,27 @@ import SignOutProfileItems from "./SignOutProfileItems";
         <nav>
           <ul className="hidden md:flex gap-8 p-4 bg-gray-700/20">
             <li className="hover:text-slate-200">
-              <Link>Laptop</Link>
+              <Link to={"category/1"}>Laptop</Link>
             </li>
             <li className="hover:text-slate-200">
-              <Link>Televizyon</Link>
+              <Link to={"category/3"}>Televizyon</Link>
             </li>
             <li className="hover:text-slate-200">
-              <Link>Kulaklık</Link>
+              <Link to={"category/4"}> Kulaklık</Link>
             </li>
             <li className="hover:text-slate-200">
-              <Link>Çevre Birimleri <button
+              Çevre Birimleri <button
               onClick={showPeripheral}
             >
               <KeyboardArrowDownIcon />
             </button>
-            <Peripherals showPeripherals={showPeripheral} open={open}/></Link>
+            <Peripherals showPeripherals={showPeripheral} open={open}/>
             </li>
             <li className="hover:text-slate-200">
-              <Link>Telefon</Link>
+              <Link to={"category/2"}>Telefon</Link>
             </li>
             <li className="hover:text-slate-200">
-              <Link>Konsol</Link>
+              <Link to={"category/9"}>Konsol</Link>
             </li>
           </ul>
         </nav>
