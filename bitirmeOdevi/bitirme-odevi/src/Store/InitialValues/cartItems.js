@@ -1,1 +1,1 @@
-export const carItems=[]
+export const cartItems=[]
