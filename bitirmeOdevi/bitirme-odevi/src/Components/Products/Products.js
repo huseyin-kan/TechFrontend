@@ -3,9 +3,16 @@ import { Link } from "react-router-dom"
 import React, { useEffect, useState } from "react";
 import ProductService from "../../Services/productService";
 import ProductHead from "./ProductHead";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../Store/Actions/cartAction";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const dispatch=useDispatch()
+
+  const handleToCart=(product)=>{
+    dispatch(addToCart(product))
+  }
 
   useEffect(() => {
     let productService = new ProductService();
@@ -61,12 +68,12 @@ const Products = () => {
                 <span className="text-md md:text-l font-bold text-gray-900 dark:text-white">
                   {product.productPrice}₺
                 </span>
-                <a
-                  href="/ "
+                <button
+                  onClick={()=>{handleToCart(product)}}
                   className="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-sky-700 dark:focus:ring-blue-800"
                 >
                   Add to cart
-                </a>
+                </button>
               </div>
             </div>
           </div>

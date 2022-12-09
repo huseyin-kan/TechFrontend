@@ -2,8 +2,11 @@ import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useSelector } from "react-redux/es/exports";
+
 
 const Cart = () => {
+  const {cartItems}=useSelector(state=>state.cart)
   return (
     <div className="container absolute top-1/4 left-60 w-2/3 bg-gray-600/90 rounded">
       <div className="p-4 flex justify-between items-center">
@@ -26,7 +29,7 @@ const Cart = () => {
                 Adet
               </th>
               <th scope="col" className="py-3 px-6">
-                Kategorİ
+                Renk
               </th>
               <th scope="col" className="py-3 px-6">
                 Fİyat
@@ -37,42 +40,21 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td className="py-4 px-6">1</td>
-              <td className="py-4 px-6">Laptop</td>
-              <td className="py-4 px-6">20000₺</td>
-              <td className="hover:cursor-pointer"><DeleteIcon className="hover:text-red-500"/></td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Microsoft Surface Pro
-              </th>
-              <td className="py-4 px-6">1</td>
-              <td className="py-4 px-6">Laptop</td>
-              <td className="py-4 px-6">20000₺</td>
-              <td className="hover:cursor-pointer"><DeleteIcon className="hover:text-red-500"/></td>
-            </tr>
-            <tr className="bg-white dark:bg-gray-800">
-              <th
-                scope="row"
-                className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="py-4 px-6">1</td>
-              <td className="py-4 px-6">Çevre Birimleri</td>
-              <td className="py-4 px-6">2500₺</td>
-              <td className="hover:cursor-pointer"><DeleteIcon className="hover:text-red-500"/></td>
-            </tr>
+            {cartItems.map((cartItem)=>(
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                          <th
+                            scope="row"
+                            className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          >
+                            {cartItem.product.productBrand} {cartItem.product.productName}
+                          </th>
+                          <td className="py-4 px-6">{cartItem.quantity}</td>
+                          <td className="py-4 px-6">{cartItem.product.productColor}</td>
+                          <td className="py-4 px-6">{cartItem.product.productPrice*cartItem.quantity}</td>
+                          <td className="hover:cursor-pointer"><DeleteIcon className="hover:text-red-500"/></td>
+                        </tr>
+                        
+            ))}
           </tbody>
         </table>
       </div>

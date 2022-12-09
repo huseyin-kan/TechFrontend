@@ -9,10 +9,11 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Peripherals from "./Peripherals";
 import SignOutProfileItems from "./SignOutProfileItems";
 import ProductService from "../../Services/productService";
+import { useSelector } from "react-redux/es/exports";
 
 
  const Header =()=> {
-
+  const {cartItems}=useSelector(state=>state.cart)
   const [open,setOpen]=useState(false);
     const [active,setActive]=useState(false)
     const [isOpen,setIsOpen]=useState(false)
@@ -106,7 +107,7 @@ import ProductService from "../../Services/productService";
           <MenuIcon onClick={showMenu} />
           </div>
           <MenuItems showMenu={showMenu} active={active}/>
-          <a href="/cart" className=""><ShoppingCartOutlinedIcon/></a>
+          <Link to={"/cart"}><ShoppingCartOutlinedIcon/>{cartItems.length>0&&<badge className="absolute top-4 leading-3 right-8 bg-red-600 items-start flex justify-center p-1 w-5 h-5 rounded-full text-xs">{cartItems.quantity}</badge> }</Link>
           <div className="ml-2">
             <AccountCircleIcon onClick={showProfile} className="hover:cursor-pointer"/>
           </div>
