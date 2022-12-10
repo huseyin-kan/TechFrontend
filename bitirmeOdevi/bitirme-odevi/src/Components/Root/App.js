@@ -7,6 +7,7 @@ import Orders from "../Orders/Orders";
 import Login from "../Login/Login";
 import Sign from "../Login/Sign";
 import Profile from "../Navi/Profile";
+import ProductAdd from "../AdminSide/ProductAdd";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/sign" element={<Sign/>}/>
             <Route path="/profile" element={<Profile/>}/>
+            <Route path="/addProduct" element={<ProductAdd/>}/>
           </Routes>
         </div>
         </Router>

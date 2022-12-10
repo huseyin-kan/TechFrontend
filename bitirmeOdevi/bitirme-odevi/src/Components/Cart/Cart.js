@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { toast } from "react-toastify";
 import { removeFromCart } from "../../Store/Actions/cartAction";
+import { Link } from "react-router-dom";
 
 
 const Cart = () => {
@@ -13,7 +14,7 @@ const Cart = () => {
 
   const handleToCart = (product) => {
     dispatch(removeFromCart(product));
-    toast.success(`${product.productName} silindi`);
+    
   };
   let total=0;
   cartItems.map((cartItem)=>(total+=(cartItem.product.productPrice)*(cartItem.quantity)))
@@ -23,10 +24,9 @@ const Cart = () => {
         <h1 className="text-2xl">
           Sepet <ShoppingCartOutlinedIcon />
         </h1>
-        <a href="/"><CloseOutlinedIcon /></a>
-        {/* <Link to="/" className="hover:cursor-pointer">
-          
-        </Link> */}
+        <Link to="/" className="hover:cursor-pointer">
+          <CloseOutlinedIcon />
+        </Link>
       </div>
       <div className="overflow-x-auto relative my-12">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -61,7 +61,7 @@ const Cart = () => {
                           </th>
                           <td className="py-4 px-6">{cartItem.quantity}</td>
                           <td className="py-4 px-6">{cartItem.product.productColor}</td>
-                          <td className="py-4 px-6">{cartItem.product.productPrice*cartItem.quantity}</td>
+                          <td className="py-4 px-6">{(cartItem.product.productPrice*cartItem.quantity).toFixed(2)}</td>
                           <td className="hover:cursor-pointer"><button onClick={()=>{handleToCart(cartItem.product)}}><DeleteIcon className="hover:text-red-500"/></button></td>
                         </tr>
                         

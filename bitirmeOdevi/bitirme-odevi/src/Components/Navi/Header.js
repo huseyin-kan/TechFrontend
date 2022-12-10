@@ -45,10 +45,10 @@ import { useSelector } from "react-redux/es/exports";
       setIsAuthenticated(true);
     }
     return (
-      <div className="fixed w-full text-white justify-between p-2 items-center flex bg-gray-700 shadow shadow-gray-700">
+      <div className="fixed w-full text-white justify-between p-2 z-20 items-center flex bg-gray-700 shadow shadow-gray-700">
         <div className=" font-bold text-center uppercase">
           <h1>
-            <a href="/">e<span className="text-sky-800">Ticaret</span></a>
+            <Link to={"/"}>e<span className="text-sky-800">Ticaret</span></Link>
           </h1>
 
         </div>
