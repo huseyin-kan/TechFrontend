@@ -1,18 +1,20 @@
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import ProductService from "../../Services/productService";
 import ProductHead from "./ProductHead";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Store/Actions/cartAction";
+import { toast } from "react-toastify";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-  const handleToCart=(product)=>{
-    dispatch(addToCart(product))
-  }
+  const handleToCart = (product) => {
+    dispatch(addToCart(product));
+    toast.success(`${product.productName} sepete eklendi`);
+  };
 
   useEffect(() => {
     let productService = new ProductService();
@@ -42,7 +44,10 @@ const Products = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">
         {products.map((product) => (
-          <div key={product.productId} className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600">
+          <div
+            key={product.productId}
+            className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600"
+          >
             <img
               className="p-8 rounded-t-lg"
               src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/apple-watch-ultra-og-202209_GEO_TR?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1661384392247"
@@ -69,10 +74,12 @@ const Products = () => {
                   {product.productPrice}₺
                 </span>
                 <button
-                  onClick={()=>{handleToCart(product)}}
+                  onClick={() => {
+                    handleToCart(product);
+                  }}
                   className="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-sky-700 dark:focus:ring-blue-800"
                 >
-                  Add to cart
+                  Sepete ekle{" "}
                 </button>
               </div>
             </div>

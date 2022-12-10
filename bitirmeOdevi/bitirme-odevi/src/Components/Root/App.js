@@ -11,15 +11,15 @@ import Profile from "../Navi/Profile";
 
 function App() {
   return (
-    <div className="bg-background-image w-screen h-screen bg-cover bg-center">
+    <div >
       
       <Router>
       <Header/>
-      <div >
+      <div className="">
           <Routes>
             <Route path="/product/:id" element={<ProductInfo/>}/>
             <Route  path="/" element={<Section/> }/>
-            <Route  path="category/:categoryid" element={<Section/> }/>
+            {/* <Route  path="category/:categoryid" element={<Section/> }/> */}
             <Route path="/cart" element={<Cart/>} />
             <Route path="/order" element={<Orders/>}/>
             <Route path="/login" element={<Login/>}/>

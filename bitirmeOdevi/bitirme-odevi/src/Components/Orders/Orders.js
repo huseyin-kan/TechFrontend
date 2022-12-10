@@ -4,7 +4,7 @@ import { Link } from "@mui/material";
 
 const Orders =()=>{
     return (
-        <div className="container h-full mx-auto pt-16 p-8 w-2/3 bg-gray-600/90">
+        <div className="container h-screen mx-auto pt-16 p-8 w-2/3 bg-gray-600/90">
         <div className="p-4 flex justify-between items-center">
           <h1 className="text-2xl">
             Önceki Siparişler
