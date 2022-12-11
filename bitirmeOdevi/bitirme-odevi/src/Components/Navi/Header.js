@@ -55,15 +55,15 @@ import { useSelector } from "react-redux/es/exports";
         <nav>
           <ul className="hidden md:flex gap-8 p-4 bg-gray-700/20">
             <li className="hover:text-slate-200">
-              <Link to={"category/1"}>Laptop</Link>
+              <Link reloadDocument to={"/1"}>Laptop</Link>
             </li>
             <li className="hover:text-slate-200">
-              <Link to={"category/3"}>Televizyon</Link>
+              <Link reloadDocument to={"/3"}>Televizyon</Link>
             </li>
             <li className="hover:text-slate-200">
-              <Link to={"category/4"}> Kulaklık</Link>
+              <Link reloadDocument to={"/4"}> Kulaklık</Link>
             </li>
-            <li className="hover:text-slate-200">
+            <li className="hover:text-slate-200 hover:cursor-pointer">
               Çevre Birimleri <button
               onClick={showPeripheral}
             >
@@ -72,10 +72,10 @@ import { useSelector } from "react-redux/es/exports";
             <Peripherals showPeripherals={showPeripheral} open={open}/>
             </li>
             <li className="hover:text-slate-200">
-              <Link to={"category/2"}>Telefon</Link>
+              <Link reloadDocument to={"/2"}>Telefon</Link>
             </li>
             <li className="hover:text-slate-200">
-              <Link to={"category/9"}>Konsol</Link>
+              <Link reloadDocument to={"/9"}>Konsol</Link>
             </li>
           </ul>
         </nav>

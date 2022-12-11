@@ -1,6 +1,6 @@
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { Link,useParams } from "react-router-dom";
+import React, { useEffect, useState, } from "react";
 import ProductService from "../../Services/productService";
 import ProductHead from "./ProductHead";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+  let {categoryId}=useParams()
 
   const handleToCart = (product) => {
     dispatch(addToCart(product));
@@ -18,10 +19,16 @@ const Products = () => {
 
   useEffect(() => {
     let productService = new ProductService();
-    productService
+    if(categoryId){
+      productService.getProductsByCategoryId(categoryId).then((result)=>setProducts(result.data.data))
+    }
+    else{
+      productService
       .getProducts()
       .then((result) => setProducts(result.data.data));
-  }, []);
+    }
+    
+  },[]);
 
   const [active, setActive] = useState(false);
   const showMenu = () => {

@@ -3,7 +3,6 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux/es/exports";
-import { toast } from "react-toastify";
 import { removeFromCart } from "../../Store/Actions/cartAction";
 import { Link } from "react-router-dom";
 
