@@ -5,7 +5,7 @@ const Filtering = () => {
     <div>
       <h1 className="text-2xl font-bold ">Filtreleme</h1>
       <div>
-        <h2 className="underline my-2">Ram Miktarı</h2>
+        <h2 className="underline my-2">Marka</h2>
         <ul className="py-4 bg-gray-700/70 rounded px-6">
           <li className="py-1">
             <div className="flex items-center">
@@ -18,7 +18,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                4GB RAM
+                Apple
               </label>
             </div>
           </li>
@@ -33,7 +33,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                8GB RAM
+                Logitech
               </label>
             </div></li>
           <li className="py-1">
@@ -47,7 +47,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                16GB RAM
+                Asus
               </label>
             </div></li>
           <li className="py-1">
@@ -61,7 +61,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                32GB RAM
+                Diğer
               </label>
             </div>
             </li>
@@ -69,7 +69,7 @@ const Filtering = () => {
       </div>
       
       <div>
-        <h2 className="underline my-2">Kapasite</h2>
+        <h2 className="underline my-2">Renk</h2>
         <ul className="py-4 bg-gray-700/70 rounded px-6">
           <li className="py-1">
             <div className="flex items-center">
@@ -82,7 +82,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                128GB
+                Siyah
               </label>
             </div>
           </li>
@@ -97,7 +97,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                256GB
+                Beyaz
               </label>
             </div></li>
           <li className="py-1">
@@ -111,7 +111,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                500GB
+                Gri
               </label>
             </div></li>
           <li className="py-1">
@@ -125,7 +125,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                512GB
+                Diğer
               </label>
             </div>
             </li>
@@ -133,7 +133,7 @@ const Filtering = () => {
       </div>
       
       <div>
-        <h2 className="underline my-2">Ekran kartı</h2>
+        <h2 className="underline my-2">Fiyat aralığı</h2>
         <ul className="py-4 bg-gray-700/70 rounded px-6">
           <li className="py-1">
             <div className="flex items-center">
@@ -146,7 +146,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Dahili
+                0-5.000
               </label>
             </div>
           </li>
@@ -161,7 +161,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                1650
+                5.001-10.000
               </label>
             </div></li>
           <li className="py-1">
@@ -175,7 +175,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                3050
+                10.001-20.000
               </label>
             </div></li>
           <li className="py-1">
@@ -189,7 +189,7 @@ const Filtering = () => {
               <label
                 className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                3070
+                20.000+
               </label>
             </div>
             </li>

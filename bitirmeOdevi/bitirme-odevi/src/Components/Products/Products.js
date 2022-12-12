@@ -1,8 +1,6 @@
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Link,useParams } from "react-router-dom";
 import React, { useEffect, useState, } from "react";
 import ProductService from "../../Services/productService";
-import ProductHead from "./ProductHead";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Store/Actions/cartAction";
 import { toast } from "react-toastify";
@@ -16,6 +14,25 @@ const Products = () => {
     dispatch(addToCart(product));
     toast.success(`${product.productName} sepete eklendi`);
   };
+  const getProductsByDescending =(event)=>{
+    let productService=new ProductService();
+    switch (event.target.value) {
+      case "desceId":
+        productService.getProducts("desc").then((result)=>setProducts(result.data))
+        break;
+      case "descePrice":
+        productService.getProductsByUnitPrice("desc").then((result)=>setProducts(result.data))
+        break;
+      case "ascePrice":
+        productService.getProductsByUnitPrice("asce").then((result)=>setProducts(result.data))
+        break;
+      default:
+        productService.getProducts().then((result)=>setProducts(result.data.data))
+        break;
+    }
+    
+    
+  }
 
   useEffect(() => {
     let productService = new ProductService();
@@ -30,23 +47,19 @@ const Products = () => {
     
   },[]);
 
-  const [active, setActive] = useState(false);
-  const showMenu = () => {
-    setActive(!active);
-  };
+
   return (
     <div className="">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold ">Ürünler</h1>
-        <button
-          className="text-white bg-cyan-800 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          type="button"
-          onClick={showMenu}
-        >
-          Sırala
-          <KeyboardArrowDownRoundedIcon />
-        </button>
-        <ProductHead showMenu={showMenu} active={active} />
+        <div className="relative w-50 lg:max-w-sm">
+            <select onChange={getProductsByDescending} className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600 hover:cursor-pointer">
+                <option value={"asceId"}>Tarihe göre ilk eklenen</option>
+                <option value={"desceId"}>Tarihe göre son eklenen</option>
+                <option value={"descePrice"}>Pahalıdan ucuza</option>
+                <option value={"ascePrice"}>Ucuzdan pahalıya</option>
+            </select>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">

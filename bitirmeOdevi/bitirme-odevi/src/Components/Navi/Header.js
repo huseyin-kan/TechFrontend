@@ -48,7 +48,7 @@ import { useSelector } from "react-redux/es/exports";
       <div className="fixed w-full text-white justify-between p-2 z-20 items-center flex bg-gray-700 shadow shadow-gray-700">
         <div className=" font-bold text-center uppercase">
           <h1>
-            <Link to={"/"}>e<span className="text-sky-800">Ticaret</span></Link>
+            <Link reloadDocument to={"/"}>e<span className="text-sky-800">Ticaret</span></Link>
           </h1>
 
         </div>
