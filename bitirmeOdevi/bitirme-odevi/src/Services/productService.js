@@ -4,7 +4,6 @@ export default class ProductService{
     // url = `https://localhost:44316/api/products/getall`
     getProducts(order){
         if(order){
-            console.log("order bölümüne girdi")
             return axios.get(`https://localhost:44316/api/products/getall?order=`+order)
         }
         return axios.get(`https://localhost:44316/api/products/getall`)

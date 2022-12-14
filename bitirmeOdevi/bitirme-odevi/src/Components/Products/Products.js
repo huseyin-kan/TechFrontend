@@ -1,13 +1,15 @@
 import { Link,useParams } from "react-router-dom";
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState } from "react";
 import ProductService from "../../Services/productService";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addToCart } from "../../Store/Actions/cartAction";
 import { toast } from "react-toastify";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const filter =useSelector(state=>state.filter)
   const dispatch = useDispatch();
+  console.log(filter)
   let {categoryId}=useParams()
 
   const handleToCart = (product) => {
@@ -30,10 +32,7 @@ const Products = () => {
         productService.getProducts().then((result)=>setProducts(result.data.data))
         break;
     }
-    
-    
   }
-
   useEffect(() => {
     let productService = new ProductService();
     if(categoryId){
@@ -46,7 +45,6 @@ const Products = () => {
     }
     
   },[]);
-
 
   return (
     <div className="">

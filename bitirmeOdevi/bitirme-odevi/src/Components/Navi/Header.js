@@ -8,24 +8,24 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Peripherals from "./Peripherals";
 import SignOutProfileItems from "./SignOutProfileItems";
-import ProductService from "../../Services/productService";
-import { useSelector } from "react-redux/es/exports";
+import { useDispatch, useSelector } from "react-redux/es/exports";
+import {searchItem} from "../../Store/Actions/searchAction"
 
 
  const Header =()=> {
   const {cartItems}=useSelector(state=>state.cart)
   const [open,setOpen]=useState(false);
+  const dispatch=useDispatch()
+  const[search,setSearch]=useState('')
+
+  const submitHandler =(event)=>{
+    setSearch(event.target.value)
+    dispatch(searchItem(search))  
+    
+  }
     const [active,setActive]=useState(false)
     const [isOpen,setIsOpen]=useState(false)
     const [isAuthenticated, setIsAuthenticated] = useState(true)
-    // const [products, setProducts] = useState([]);
-
-    // useEffect(() => {
-    //   let productService = new ProductService();
-    //   productService
-    //     .getProductsByCategoryId()
-    //     .then((result) => setProducts(result.data.data));
-    // }, []);
     const navigate = useNavigate()
     const  showProfile=()=>{
       setIsOpen(!isOpen)
@@ -80,9 +80,10 @@ import { useSelector } from "react-redux/es/exports";
           </ul>
         </nav>
         <div className="flex items-center">
-          <form className="max-w-sm px-4">
+          <form className="max-w-sm px-4" >
             <div className="relative ">
-              <svg
+              
+                <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
                 fill="none"
@@ -96,10 +97,13 @@ import { useSelector } from "react-redux/es/exports";
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
               </svg>
+              
               <input
                 type="text"
                 placeholder="Search"
                 className="w-full py-3 pl-12 pr-4 text-white-500 border rounded-md outline-none bg-transparent focus:bg-transparent border-gray-600"
+                value={search}
+                onChange={(e)=>submitHandler(e)}
               />
             </div>
           </form>
