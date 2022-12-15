@@ -11,8 +11,7 @@ export default class ProductAdd extends Component {
       productPrice: 0,
       productDescription: "",
       categoryId: 0,
-      categoryName: "",
-      unitsInStock: 0,
+      unitsInStock: 100,
       productColor: "",
       productBrand: "",
     };
@@ -20,7 +19,6 @@ export default class ProductAdd extends Component {
       productName: yup.string("Değer sayı olamaz").required("Ürün ismi zorunludur"),
       productBrand: yup.string("Değer sayı olamaz").required("Ürün markası zorunludur"),
       productColor: yup.string("Değer sayı olamaz").required("Renk zorunludur"),
-      categoryName: yup.string("Değer sayı olamaz").required("Kategori ismi gereklidir"),
       productPrice: yup.number("Değer sayı olmalıdır").moreThan(0, "Ürün fiyatı girmelisiniz"),
       categoryId: yup
         .number("Değer sayı olmalıdır")
@@ -76,22 +74,7 @@ export default class ProductAdd extends Component {
             </div>
             <div className="mb-6 px-4">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ürün Kategori İsmi
-              </label>
-              <Field
-                name="categoryName"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              ></Field>
-              <ErrorMessage
-                name="categoryName"
-                render={msg => <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative -z-5" role="alert">
-                <span className="block sm:inline">{msg}.</span>
-              </div>}
-              ></ErrorMessage>
-            </div>
-            <div className="mb-6 px-4">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ürün Kategori ID
+                Ürün Kategori
               </label>
               <Field
                 name="categoryId"

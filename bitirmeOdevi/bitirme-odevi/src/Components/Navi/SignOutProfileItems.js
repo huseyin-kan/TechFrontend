@@ -1,5 +1,6 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { Link } from "react-router-dom";
 
 const SignOutProfileItems = (props) => {
   return (
@@ -13,11 +14,11 @@ const SignOutProfileItems = (props) => {
       >
         <CloseIcon onClick={props.showProfile} className="absolute inset-2" />
         <li onClick={props.signIn} >
-          <a href="/login">Giriş Yap</a>
+          <Link to={"/login"}>Giriş Yap</Link>
         </li>
         <br className=""></br>
         <li className="pt-4">
-          <a href="/sign"><span className="text-gray-700 underline decoration-gray-700 underline-offset-4 lowercase">Hesabın yok mu?</span> Kayıt ol</a>
+          <Link to={"/sign"}><span className="text-gray-700 underline decoration-gray-700 underline-offset-4 lowercase">Hesabın yok mu?</span> Kayıt ol</Link>
         </li>
       </ul>
     </div>

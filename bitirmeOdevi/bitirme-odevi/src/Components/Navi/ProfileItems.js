@@ -1,5 +1,6 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { Link } from "react-router-dom";
 
 const ProfileItems = (props) => {
   return (
@@ -13,17 +14,17 @@ const ProfileItems = (props) => {
       >
         <CloseIcon onClick={props.showProfile} className="absolute inset-2" />
         <li>
-          <a href="/profile">Hesap</a>
+          <Link to={"/profile"}>Hesap</Link>
         </li>
         <li>
-          <a href="/order">Siparişler</a>
+          <Link to={"/order"}>Siparişler</Link>
         </li>
         <li>
-          <a href="/order">Kartlar</a>
+          <Link to={"/order"}>Kartlar</Link>
         </li>
         <br className=""></br>
         <li className="pt-4  hover:cursor-pointer" onClick={props.signOut}>
-          <a href="/" >Çıkış Yap</a>
+          <Link to={"/"} >Çıkış Yap</Link>
         </li>
       </ul>
     </div>

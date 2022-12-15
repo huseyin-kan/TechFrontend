@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductHead = ({active}) => {
   return (
@@ -14,36 +15,36 @@ const ProductHead = ({active}) => {
         className="py-1 text-sm text-gray-700 dark:text-gray-200"
       >
         <li>
-          <a
+          <Link
             href="/"
             className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Fiyata göre önce yüksek
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             href="/"
             className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Fiyata göre önce düşük
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             href="/"
             className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Tarihe göre önce ilk
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             href="/"
             className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Tarihe göre önce son
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
