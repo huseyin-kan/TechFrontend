@@ -9,7 +9,10 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const filter =useSelector(state=>state.filter)
   const dispatch = useDispatch();
-  console.log(filter)
+
+  const filterText=filter.searchFilter
+  console.log(filterText)
+  
   let {categoryId}=useParams()
 
   const handleToCart = (product) => {
@@ -61,7 +64,11 @@ const Products = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">
-        {products.map((product) => (
+        {products.filter((product)=>{
+          return filterText.trim().toLowerCase()===""
+          ? product
+          :product.productName.toLowerCase().includes(filterText.trim())||product.productBrand.toLowerCase().includes(filterText.trim())
+        }).map((product) => (
           <div
             key={product.productId}
             className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600"

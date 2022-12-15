@@ -16,11 +16,13 @@ import {searchItem} from "../../Store/Actions/searchAction"
   const {cartItems}=useSelector(state=>state.cart)
   const [open,setOpen]=useState(false);
   const dispatch=useDispatch()
-  const[search,setSearch]=useState('')
+  const[search,setSearch]=useState("")
 
   const submitHandler =(event)=>{
-    setSearch(event.target.value)
-    dispatch(searchItem(search))  
+    event.preventDefault()
+
+      dispatch(searchItem(search))  
+    
     
   }
     const [active,setActive]=useState(false)
@@ -80,10 +82,10 @@ import {searchItem} from "../../Store/Actions/searchAction"
           </ul>
         </nav>
         <div className="flex items-center">
-          <form className="max-w-sm px-4" >
+          <form className="max-w-sm px-4" onSubmit={submitHandler}>
             <div className="relative ">
-              
-                <svg
+              <button type="submit">
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
                 fill="none"
@@ -97,13 +99,14 @@ import {searchItem} from "../../Store/Actions/searchAction"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
               </svg>
+              </button>
               
               <input
                 type="text"
                 placeholder="Search"
                 className="w-full py-3 pl-12 pr-4 text-white-500 border rounded-md outline-none bg-transparent focus:bg-transparent border-gray-600"
                 value={search}
-                onChange={(e)=>submitHandler(e)}
+                onChange={(e)=>setSearch(e.target.value)}
               />
             </div>
           </form>
