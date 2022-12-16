@@ -8,7 +8,7 @@ import Login from "../Login/Login";
 import Sign from "../Login/Sign";
 import Profile from "../Navi/Profile";
 import ProductAdd from "../AdminSide/ProductAdd";
-
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Router>
       <Header/>
       <div className="">
+      <ToastContainer position="bottom-right"/>
           <Routes>
             <Route path="/product/:id" element={<ProductInfo/>}/>
             <Route path="/:categoryId/product/:id" element={<ProductInfo/>}/>

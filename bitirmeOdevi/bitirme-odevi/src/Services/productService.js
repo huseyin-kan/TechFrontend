@@ -26,4 +26,8 @@ export default class ProductService{
         }
         return axios.get(`https://localhost:44316/api/products/getall`)
     }
+    postProduct(product){
+        console.log(product)
+        return axios.post(`https://localhost:44316/api/products/add`,product,{'Content-Type':'application/json'});
+    }
 } 

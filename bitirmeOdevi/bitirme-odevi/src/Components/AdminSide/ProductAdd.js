@@ -1,16 +1,33 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import CategoryService from "../../Services/categoryService";
+import ProductService from "../../Services/productService";
+import { toast } from "react-toastify";
 
-export default class ProductAdd extends Component {
-  render() {
+const ProductAdd =()=> {
+  const [category,setCategory]=useState([])
+
+    useEffect(()=>{
+      let categoryService = new CategoryService()
+      categoryService.getCategories().then((result)=>{setCategory(result.data.data)})
+
+    },[])
+
+    const onSubmitHandler = (values)=>{
+      let productService = new ProductService()
+      productService.postProduct(values).then(response=>toast.success("Ürün Başarıyla eklendi")).catch(err=>toast.error(err.response.data.message))
+      
+    }
+    
+
     const initialValues = {
       productName: "",
       productPrice: 0,
       productDescription: "",
-      categoryId: 0,
+      categoryId: 0.0,
       unitsInStock: 100,
       productColor: "",
       productBrand: "",
@@ -22,7 +39,7 @@ export default class ProductAdd extends Component {
       productPrice: yup.number("Değer sayı olmalıdır").moreThan(0, "Ürün fiyatı girmelisiniz"),
       categoryId: yup
         .number("Değer sayı olmalıdır")
-        .moreThan(0, "0'dan büyük olmalı")
+        .moreThan(-1, "0'dan büyük olmalı")
         .lessThan(11, "11'den küçük olmalı"),
       productDescription: yup.string("Değer sayı olamaz").required("Ürün tanımı gereklidir"),
     });
@@ -31,8 +48,9 @@ export default class ProductAdd extends Component {
         <Formik
           initialValues={initialValues}
           validationSchema={schema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={(values,{resetForm}) => {
+            onSubmitHandler(values)
+            resetForm()
           }}
         >
           <Form className="w-full bg-white rounded-lg shadow dark:border  sm:max-w-md py-4 dark:bg-gray-800 dark:border-gray-700">
@@ -77,9 +95,17 @@ export default class ProductAdd extends Component {
                 Ürün Kategori
               </label>
               <Field
+                as="select"
                 name="categoryId"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              ></Field>
+              >
+                <option defaultValue={"Kategori Seçiniz"} disabled>Kategori Seçiniz</option>
+                {
+                  category.map((category)=>(
+                    <option key={category.categoryId} value={category.categoryId} >{category.categoryName}</option>
+                  ))
+                }
+              </Field>
               <ErrorMessage
                 name="categoryId"
                 render={msg => <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative -z-5" role="alert">
@@ -139,4 +165,5 @@ export default class ProductAdd extends Component {
       </div>
     );
   }
-}
+
+export default ProductAdd
