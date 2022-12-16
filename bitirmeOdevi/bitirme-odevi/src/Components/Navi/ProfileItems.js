@@ -13,13 +13,13 @@ const ProfileItems = (props) => {
         }
       >
         <CloseIcon onClick={props.showProfile} className="absolute inset-2" />
-        <li>
+        <li className={props.isAdmin ? "hidden":""}>
           <Link to={"/profile"}>Hesap</Link>
         </li>
-        <li>
+        <li className={props.isAdmin ? "hidden":""}>
           <Link to={"/order"}>Siparişler</Link>
         </li>
-        <li>
+        <li className={props.isAdmin ? "hidden":""}>
           <Link to={"/order"}>Kartlar</Link>
         </li>
         <br className=""></br>

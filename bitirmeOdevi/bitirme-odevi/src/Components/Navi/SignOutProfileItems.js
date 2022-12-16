@@ -13,8 +13,8 @@ const SignOutProfileItems = (props) => {
         }
       >
         <CloseIcon onClick={props.showProfile} className="absolute inset-2" />
-        <li onClick={props.signIn} >
-          <Link to={"/login"}>Giriş Yap</Link>
+        <li >
+          <Link to={"/login"} onClick={props.showProfile}>Giriş Yap</Link>
         </li>
         <br className=""></br>
         <li className="pt-4">

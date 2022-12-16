@@ -1,5 +1,5 @@
-import React, {  useState } from "react";
-import { Link,  useNavigate,useEffect } from "react-router-dom";
+import React, {  useState,useEffect  } from "react";
+import { Link,  useNavigate} from "react-router-dom";
 import MenuItems from "./MenuItems";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -21,13 +21,24 @@ import {searchItem} from "../../Store/Actions/searchAction"
   const submitHandler =(event)=>{
     event.preventDefault()
 
-      dispatch(searchItem(search))  
-    
-    
+      dispatch(searchItem(search))    
   }
+  const [isAdmin,setAdmin]=useState(false)
+    useEffect(() => {
+        if(localStorage.getItem("customer")){
+          handleSignIn()
+          
+        }
+        else if(localStorage.getItem("admin")){
+          handleSignIn()
+            setAdmin(true)
+        }
+    }, [])
+    
+
     const [active,setActive]=useState(false)
     const [isOpen,setIsOpen]=useState(false)
-    const [isAuthenticated, setIsAuthenticated] = useState(true)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const navigate = useNavigate()
     const  showProfile=()=>{
       setIsOpen(!isOpen)
@@ -41,10 +52,17 @@ import {searchItem} from "../../Store/Actions/searchAction"
   }
     function handleSignOut() {
       setIsAuthenticated(false);
+      if(isAdmin){
+        localStorage.removeItem("admin")
+        
+      }else{
+        localStorage.removeItem("customer")
+      }
       navigate("/")
     }
     function handleSignIn() {
       setIsAuthenticated(true);
+      console.log(isAuthenticated)
     }
     return (
       <div className="fixed w-full text-white justify-between p-2 z-20 items-center flex bg-gray-700 shadow shadow-gray-700">
@@ -118,7 +136,7 @@ import {searchItem} from "../../Store/Actions/searchAction"
           <div className="ml-2">
             <AccountCircleIcon onClick={showProfile} className="hover:cursor-pointer"/>
           </div>
-          {isAuthenticated?<ProfileItems signOut={handleSignOut} showProfile={showProfile} isOpen={isOpen} />:<SignOutProfileItems signIn={handleSignIn} showProfile={showProfile} isOpen={isOpen} />}
+          {isAuthenticated?<ProfileItems signOut={handleSignOut} showProfile={showProfile} isAdmin={isAdmin} isOpen={isOpen} />:<SignOutProfileItems showProfile={showProfile} isOpen={isOpen} />}
           
         </div>
       </div>

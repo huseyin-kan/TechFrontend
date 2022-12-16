@@ -11,7 +11,7 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const filterText=filter.searchFilter
-  console.log(filterText)
+
   
   let {categoryId}=useParams()
 
