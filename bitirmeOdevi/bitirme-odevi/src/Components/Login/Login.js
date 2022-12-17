@@ -31,7 +31,7 @@ const Login =()=> {
                 localStorage.setItem("customer",response.data.data.userId)
             }
             navigate("/");
-            // window.location.reload();  
+            window.location.reload();  
         })
          .catch(err=>toast.error(err.response.data.message))
 
