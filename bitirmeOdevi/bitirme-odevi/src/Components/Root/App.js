@@ -9,6 +9,7 @@ import Sign from "../Login/Sign";
 import Profile from "../Navi/Profile";
 import ProductAdd from "../AdminSide/ProductAdd";
 import { ToastContainer } from 'react-toastify'
+import EditProfile from "../CustomerSide/EditProfile";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/:categoryId/product/:id" element={<ProductInfo/>}/>
             <Route exact path="/" element={<Section/> }/>
             <Route path="/:categoryId" element={<Section/> }/>
+            <Route path="/updateProfile/:userId" element={<EditProfile/> }/>
             <Route path="/cart" element={<Cart/>} />
             <Route path="/order" element={<Orders/>}/>
             <Route path="/login" element={<Login/>}/>

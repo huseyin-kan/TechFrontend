@@ -1,12 +1,11 @@
 import React, { useState,useEffect } from "react";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UserService from "../../Services/userService";
 
 const Profile = () => {
-  const [active, setActive] = useState(true);
   const [user,setUser]=useState({})
   
 
@@ -17,10 +16,7 @@ const Profile = () => {
       
   }, [])
   
-  const isActive = () => {
-    setActive(!active);
-    
-  };
+
   return (
     <div className="container h-full mx-auto pt-16 w-2/3 bg-gray-600/90">
       <div className="p-4 flex justify-between items-center">
@@ -33,38 +29,35 @@ const Profile = () => {
         <div className="bg-gray-500/30 rounded shadow p-4 transition hover:bg-gray-700 duration-200 ">
           <label className="text-md">
             Ad :{" "}
-            <span className={active ? "text-gray-300" : "hidden"}>{user.userName}</span>{" "}
-            <input type="text" className={active ? "hidden":"w-3/4 rounded shadow text-white bg-gray-400 p-2 ml-4"} placeholder="Hüseyin"></input>
-          </label>
+            <span className="text-gray-300">{user.userName}</span>{" "}
+            </label>
         </div>
-        <div className="relative ">
-          <button onClick={isActive} className="absolute right-2 top-2">
-            <BorderColorIcon className="transition hover:text-yellow-600 duration-300" />
-          </button>
+        <div className="bg-gray-500/30 rounded shadow p-4 transition hover:bg-gray-700 duration-200  ">
+        <label className="text-md">
+            Mail :{" "}
+            <span className="text-gray-300" >{user.userEmail}</span>
+          </label>
         </div>
         <div className="bg-gray-500/30 rounded shadow p-4 transition hover:bg-gray-700 duration-200 ">
           <label className="text-md">
             Soyad :{" "}
-            <span className={active ? "text-gray-300" : "hidden"}>{user.userSurName}</span>
+            <span className="text-gray-300">{user.userSurName}</span>
           </label>
-          <input type="text" className={active ? "hidden":"w-3/4 rounded shadow text-white bg-gray-400 p-2 ml-4"} placeholder="Kan"></input>
         </div>
         <div className="bg-gray-500/30 rounded shadow p-4 transition hover:bg-gray-700 duration-200 ">
           <label className="text-md">
             Telefon :{" "}
-            <span className={active ? "text-gray-300" : "hidden"}>
+            <span className="text-gray-300">
               {user.userPhone}
             </span>
           </label>
-          <input type="text" className={active ? "hidden":"w-3/4 rounded shadow text-white bg-gray-400 p-2 ml-4"} placeholder="05302323232"></input>
         </div>
         <div className="bg-gray-500/30 rounded shadow p-4 transition hover:bg-gray-700 duration-200 ">
           <label className="text-md">
             Adres :{" "}
-            <span className={active ? "text-gray-300" : "hidden"}>
+            <span className="text-gray-300" >
               {user.userAddress}
             </span>
-            <input type="text" className={active ? "hidden":"w-3/4 rounded shadow text-white bg-gray-400 p-2 ml-4"} placeholder="Güzelyalı mah 19051 sk no 22 kat 3 Çukurova/Adana"></input>
           </label>
         </div>
         <div className="bg-gray-500/30 rounded shadow p-4 transition flex justify-center items-center hover:bg-gray-700 duration-200 hover:cursor-pointer">
@@ -73,12 +66,14 @@ const Profile = () => {
             <NavigateNextIcon />
           </Link>{" "}
         </div>
-        <div className={ active ?"hidden":"col-span-2 flex justify-between p-4 items-center shadow"}><button  className="p-4 flex items-center justify-center rounded bg-green-700 transition hover:bg-green-600 duration-300">Düzenle</button> <button className="p-4 flex items-center justify-center rounded bg-red-700 transition hover:bg-red-600 duration-300">Hesabı Sil</button></div>
-      </div>
-      <div className="w-full flex justify-center items-center">
+       </div>
+      <div className="w-full flex justify-between items-center px-6">
       <button className=" w-1/3 h-12 px-6 text-indigo-100 my-4 transition-colors duration-150 bg-blue-800 rounded-lg focus:shadow-outline hover:bg-blue-400">
         Kart ekle
       </button>
+      <Link to={`/updateProfile/${user.userId}`} className=" flex justify-center items-center w-1/3 h-12 px-6 text-indigo-100 my-4 transition-colors duration-150 bg-orange-800 rounded-lg focus:shadow-outline hover:bg-orange-400">
+        Hesabı Düzenle
+      </Link>
       </div>
 
     </div>
