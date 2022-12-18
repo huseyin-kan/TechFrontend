@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const EditProfile = () => {
   const navigate=useNavigate()
   const {userId}=useParams()
-  const [user,setUser]=useState({user:0,userName:'',userSurName:'',userEmail:'',userAddress:'',userPassword:'',isAdmin:false,userPhone:''})
+  const [user,setUser]=useState({userId:0,userName:'',userSurName:'',userEmail:'',userAddress:'',userPassword:'',isAdmin:false,userPhone:''})
   const userService= new UserService()
   useEffect(() => {
     userService.getUserById(userId).then(response=>setUser(response.data.data))
@@ -21,17 +21,18 @@ const EditProfile = () => {
     userSurName: user.userSurName,
     userPhone: user.userPhone,
     userAddress: user.userAddress,
-    isAdmin: false,
+    isAdmin: user.isAdmin,
     userPassword: user.userPassword,
   };
+
   const submitHandler = (values) => {
     console.log(values)
-    // userService.addUser(values)
-    // .then(response=>{
-    //     toast.success("Profiliniz güncellendi")
-    //     navigate("/profile");
-    // })
-    // .catch(err=>toast.error(err.response.data.message))
+    userService.updateUser(values)
+    .then(response=>{
+        toast.success("Profiliniz güncellendi")
+        navigate("/profile");
+    })
+    .catch(err=>toast.error(err.response.data.message))
   };
 
   const schema = yup.object({
@@ -68,6 +69,7 @@ const EditProfile = () => {
                 Hesabı Güncelle
               </h1>
               <Formik
+                enableReinitialize={true}
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={(values)=>{
@@ -82,7 +84,7 @@ const EditProfile = () => {
                       Email
                     </label>
                     <Field 
-                    value={user.userEmail}
+                    placeholder={user.userEmail}
                     type="email"
                     name="userEmail"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -100,7 +102,7 @@ const EditProfile = () => {
                       Ad
                     </label>
                     <Field 
-                    value={user.userName}
+                    placeholder={user.userName}
                     type="text"
                     name="userName"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -118,7 +120,7 @@ const EditProfile = () => {
                       Soyad
                     </label>
                     <Field 
-                    value ={user.userSurName}
+                    placeholder={user.userSurName}
                     type="text"
                     name="userSurName"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -136,7 +138,7 @@ const EditProfile = () => {
                       Şifre
                     </label>
                     <Field 
-                    value={user.userPassword}
+                    placeholder={user.userPassword}
                     type="password"
                     name="userPassword"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -154,7 +156,7 @@ const EditProfile = () => {
                       Şifreyi doğrula
                     </label>
                     <Field 
-                    value={user.userPassword}
+                    placeholder={user.userPassword}
                     type="password"
                     name="confirmPassword"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -172,7 +174,7 @@ const EditProfile = () => {
                       Adres
                     </label>
                     <Field 
-                    value={user.userAddress}
+                    placeholder={user.userAddress}
                     type="text"
                     name="userAddress"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -190,7 +192,7 @@ const EditProfile = () => {
                       Telefon Numarası
                     </label>
                     <Field 
-                    value={user.userPhone}
+                    placeholder={user.userPhone}
                     type="text"
                     name="userPhone"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

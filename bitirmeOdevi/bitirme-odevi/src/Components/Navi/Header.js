@@ -62,7 +62,6 @@ import {searchItem} from "../../Store/Actions/searchAction"
     }
     function handleSignIn() {
       setIsAuthenticated(true);
-      console.log(isAuthenticated)
     }
     return (
       <div className="fixed w-full text-white justify-between p-2 z-20 items-center flex bg-gray-700 shadow shadow-gray-700">

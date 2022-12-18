@@ -36,6 +36,18 @@ const Products = () => {
         break;
     }
   }
+  const [isAdmin,setAdmin]=useState(false)
+  useEffect(() => {
+      if(localStorage.getItem("customer")){
+
+        
+      }
+      else if(localStorage.getItem("admin")){
+          
+          setAdmin(true)
+      }
+  }, [])
+  console.log(isAdmin)
   useEffect(() => {
     let productService = new ProductService();
     if(categoryId){
@@ -64,6 +76,20 @@ const Products = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">
+                  <div
+            className="w-full max-w-sm bg-white flex justify-center items-center rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600"
+          >
+
+            <div className="px-5 pb-4 shadow-md w-2/3 h-2/3 flex justify-center items-center ">
+              <Link to={"/addProduct"}>
+                {" "}
+                <img src="https://www.freepnglogos.com/uploads/plus-icon/plus-icon-plus-math-icon-download-icons-9.png"/>
+                
+
+              </Link>
+
+            </div>
+          </div>
         {products.filter((product)=>{
           return filterText.trim().toLowerCase()===""
           ? product

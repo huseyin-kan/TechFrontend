@@ -14,5 +14,8 @@ export default class UserService{
     login(user){
         return axios.post(`https://localhost:44316/api/users/login`,user,{'Content-Type':'application/json'})
     }
+    updateUser(user){
+        return axios.post(`https://localhost:44316/api/users/update`,user,{'Content-Type':'application/json'})
+    }
 
 }
