@@ -26,7 +26,6 @@ const EditProfile = () => {
   };
 
   const submitHandler = (values) => {
-    console.log(values)
     userService.updateUser(values)
     .then(response=>{
         toast.success("Profiliniz güncellendi")

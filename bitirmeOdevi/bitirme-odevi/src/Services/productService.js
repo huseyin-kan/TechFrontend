@@ -27,7 +27,14 @@ export default class ProductService{
         return axios.get(`https://localhost:44316/api/products/getall`)
     }
     postProduct(product){
-        console.log(product)
+
         return axios.post(`https://localhost:44316/api/products/add`,product,{'Content-Type':'application/json'});
+    }
+    updateProduct(product){
+        
+        return axios.post(`https://localhost:44316/api/products/update`,product,{'Content-Type':'application/json'});
+    }
+    deleteProduct(product){
+        return axios.post(`https://localhost:44316/api/products/delete`,product,{'Content-Type':'application/json'});
     }
 } 

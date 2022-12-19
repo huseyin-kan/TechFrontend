@@ -24,7 +24,7 @@ const ProfileItems = (props) => {
         </li>
         <br className=""></br>
         <li className="pt-4  hover:cursor-pointer" onClick={props.signOut}>
-          <Link to={"/"} >Çıkış Yap</Link>
+          <Link to={"/"} onClick={()=>window.location.reload()} >Çıkış Yap</Link>
         </li>
       </ul>
     </div>

@@ -4,11 +4,16 @@ import ProductService from "../../Services/productService";
 import { useDispatch,useSelector } from "react-redux";
 import { addToCart } from "../../Store/Actions/cartAction";
 import { toast } from "react-toastify";
+import DeleteIcon from '@mui/icons-material/Delete';
+import SettingsIcon from '@mui/icons-material/Settings';
+import 'alertifyjs/build/css/alertify.css';
+import alertify from 'alertifyjs';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const filter =useSelector(state=>state.filter)
   const dispatch = useDispatch();
+  const productService= new ProductService()
 
   const filterText=filter.searchFilter
 
@@ -20,7 +25,6 @@ const Products = () => {
     toast.success(`${product.productName} sepete eklendi`);
   };
   const getProductsByDescending =(event)=>{
-    let productService=new ProductService();
     switch (event.target.value) {
       case "desceId":
         productService.getProducts("desc").then((result)=>setProducts(result.data))
@@ -47,9 +51,7 @@ const Products = () => {
           setAdmin(true)
       }
   }, [])
-  console.log(isAdmin)
   useEffect(() => {
-    let productService = new ProductService();
     if(categoryId){
       productService.getProductsByCategoryId(categoryId).then((result)=>setProducts(result.data.data))
     }
@@ -75,9 +77,9 @@ const Products = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">
+      <div  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">
                   <div
-            className="w-full max-w-sm bg-white flex justify-center items-center rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600"
+            className={ isAdmin?"w-full max-w-sm bg-white flex justify-center items-center rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600":"hidden"}
           >
 
             <div className="px-5 pb-4 shadow-md w-2/3 h-2/3 flex justify-center items-center ">
@@ -85,7 +87,6 @@ const Products = () => {
                 {" "}
                 <img src="https://www.freepnglogos.com/uploads/plus-icon/plus-icon-plus-math-icon-download-icons-9.png"/>
                 
-
               </Link>
 
             </div>
@@ -95,10 +96,19 @@ const Products = () => {
           ? product
           :product.productName.toLowerCase().includes(filterText.trim())||product.productBrand.toLowerCase().includes(filterText.trim())
         }).map((product) => (
+          
           <div
             key={product.productId}
             className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600"
           >
+            <div className={isAdmin?"flex justify-between  items-center w-full":"hidden"}>
+              <Link to={`updateProduct/${product.productId}`} className=" flex items-center justify-center p-2 hover:cursor-pointer hover:text-blue-400/80"><SettingsIcon/></Link>
+              <span
+              onClick={()=>alertify.confirm('Ürünü Silme', 'Seçili ürün silinsin mi', function(){ productService.deleteProduct(product).then(response=>{toast.success("Ürün silindi");window.location.reload()}) }
+              , function(){ toast.error('İşlem geri alındı')}).set('labels', {ok:'Ürünü Sil', cancel:'Vazgeç'})}  
+              className=" flex items-center justify-center p-2 hover:cursor-pointer hover:text-red-400/80"
+              ><DeleteIcon/></span>
+            </div>   
             <img
               className="p-8 rounded-t-lg"
               src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/apple-watch-ultra-og-202209_GEO_TR?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1661384392247"
