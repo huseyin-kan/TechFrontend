@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { Link } from "@mui/material";
+import OrderService from '../../Services/orderService';
+import moment from 'moment';
+import "moment/locale/tr"
 
 const Orders =()=>{
+  const [orders,setOrders]=useState([])
+  useEffect(() => {
+    let orderService= new OrderService()
+
+    orderService.getOrdeByCustomerId(localStorage.getItem("customer")).then(response=>setOrders(response.data.data))
+  
+
+  }, [])
+  
+
     return (
         <div className="container h-screen mx-auto pt-16 p-8 w-2/3 bg-gray-600/90">
         <div className="p-4 flex justify-between items-center">
           <h1 className="text-2xl">
-            Önceki Siparişler
+           Siparişler
           </h1>
           <Link to="/" className="hover:cursor-pointer">
             <CloseOutlinedIcon />
@@ -18,10 +31,10 @@ const Orders =()=>{
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" className="py-3 px-6">
-                  Ürünler
+                  Sipariş Zamanı
                 </th>
                 <th scope="col" className="py-3 px-6">
-                  Adet
+                  Teslim Zamanı-Tahmini 
                 </th>
                 <th scope="col" className="py-3 px-6">
                   Ödenen Miktar
@@ -33,71 +46,19 @@ const Orders =()=>{
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              {orders.map((order)=>(
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700 hover:cursor-pointer">
                 <th
                   scope="row"
                   className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  dark:text-white"
                 >
-                  Apple MacBook Pro 17"<br/>
-                  Magic Mouse 2<br/>
-                  Microsoft Surface Pro<br/>
+                  {moment(order.orderDate).locale("tr").calendar()}
                 </th>
-                <td className="py-4 px-6">3</td>
-                <td className="py-4 px-6">42500₺</td>
-                <td className="py-4 px-6">Kargoda</td>
-              </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                  scope="row"
-                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  dark:text-white"
-                >
-                  Apple MacBook Pro 17"<br/>
-                  Magic Mouse 2<br/>
-                  Microsoft Surface Pro<br/>
-                </th>
-                <td className="py-4 px-6">3</td>
-                <td className="py-4 px-6">42500₺</td>
-                <td className="py-4 px-6">Kargoda</td>
-              </tr>
-              <tr className="bg-white dark:bg-gray-800">
-              <th
-                  scope="row"
-                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  dark:text-white"
-                >
-                  Apple MacBook Pro 17"<br/>
-                  Magic Mouse 2<br/>
-                  Microsoft Surface Pro<br/>
-                </th>
-                <td className="py-4 px-6">3</td>
-                <td className="py-4 px-6">42500₺</td>
-                <td className="py-4 px-6">Kargoda</td>
-              </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  dark:text-white"
-                >
-                  Apple MacBook Pro 17"<br/>
-                  Magic Mouse 2<br/>
-                  Microsoft Surface Pro<br/>
-                </th>
-                <td className="py-4 px-6">3</td>
-                <td className="py-4 px-6">42500₺</td>
-                <td className="py-4 px-6">Kargoda</td>
-              </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  dark:text-white"
-                >
-                  Apple MacBook Pro 17"<br/>
-                  Magic Mouse 2<br/>
-                  Microsoft Surface Pro<br/>
-                </th>
-                <td className="py-4 px-6">3</td>
-                <td className="py-4 px-6">42500₺</td>
-                <td className="py-4 px-6">Kargoda</td>
-              </tr>
+                <td className="py-4 px-6">{moment(order.requiredDate).locale("tr").calendar()}</td>
+                <td className="py-4 px-6">{order.orderTotal}₺</td>
+                <td className="py-4 px-6">{moment().isAfter(moment(order.requiredDate))?"Teslim edildi":"Kargoda"}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

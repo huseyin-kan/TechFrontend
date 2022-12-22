@@ -99,7 +99,7 @@ const Products = () => {
           
           <div
             key={product.productId}
-            className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600"
+            className={product.unitsInStock>0?"w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600":"w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-700/80 dark:border-gray-600/80"}
           >
             <div className={isAdmin?"flex justify-between  items-center w-full":"hidden"}>
               <Link to={`updateProduct/${product.productId}`} className=" flex items-center justify-center p-2 hover:cursor-pointer hover:text-blue-400/80"><SettingsIcon/></Link>
@@ -138,9 +138,10 @@ const Products = () => {
                   onClick={() => {
                     handleToCart(product);
                   }}
-                  className="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-sky-700 dark:focus:ring-blue-800"
+                  disabled={product.unitsInStock===0}
+                  className={product.unitsInStock===0?"text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800":"text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-sky-700 dark:focus:ring-blue-800"}
                 >
-                  Sepete ekle{" "}
+                  {product.unitsInStock===0?"Stok Dışı":"Sepete Ekle"}
                 </button>
               </div>
             </div>

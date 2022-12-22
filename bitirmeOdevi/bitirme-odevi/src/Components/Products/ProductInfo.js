@@ -44,8 +44,9 @@ const ProductInfo = () => {
               <label className="text-lg text-gray-100">Ürün Fiyatı : <span className="text-lg text-gray-700 ml-4"> {product.productPrice} </span> </label>
             </div>
           </div>
-          <div className="flex justify-end items-center">
-                <div><button className="border-2 px-4 py-2 rounded border-yellow-200 bg-yellow-300 transition hover:bg-transparent duration-300 hover:text-gray-200 hover:border-gray-200">Sepete Ekle</button></div>
+          <div className={product.unitsInStock===0?"flex justify-center items-center":"flex justify-end items-center"}>
+                <div className={product.unitsInStock===0?"hidden":""}><button className="border-2 px-4 py-2 rounded border-yellow-200 bg-yellow-300 transition hover:bg-transparent duration-300 hover:text-gray-200 hover:border-gray-200">Sepete Ekle</button></div>
+                <div className={product.unitsInStock===0?"py-6":"hidden"}><h1 className="text-xl text-red-500">Ürün stokta Kalmamıştır</h1></div>
           </div>
         </div>
       </div>

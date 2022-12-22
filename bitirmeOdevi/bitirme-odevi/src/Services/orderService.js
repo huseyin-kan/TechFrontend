@@ -11,4 +11,7 @@ export default class OrderService{
     getOrdeByCustomerId(id){
         return axios.get(`https://localhost:44316/api/orders/getbycustomerid?id=`+id)
     }
+    getLastOrder(){
+        return axios.get(`https://localhost:44316/api/orders/getlastorder`)
+    }
 }
