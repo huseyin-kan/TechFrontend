@@ -37,4 +37,7 @@ export default class ProductService{
     deleteProduct(product){
         return axios.post(`https://localhost:44316/api/products/delete`,product,{'Content-Type':'application/json'});
     }
+    getProductDetailsByOrderId(id){
+        return axios.get(`https://localhost:44316/api/products/getdetailsbyid?id=`+id)
+    }
 } 

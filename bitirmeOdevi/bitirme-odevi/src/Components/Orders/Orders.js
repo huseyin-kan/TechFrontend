@@ -1,12 +1,18 @@
 import React, { useState,useEffect } from 'react'
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 import OrderService from '../../Services/orderService';
 import moment from 'moment';
 import "moment/locale/tr"
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
+
 
 const Orders =()=>{
   const [orders,setOrders]=useState([])
+
+
+
   useEffect(() => {
     let orderService= new OrderService()
 
@@ -42,12 +48,14 @@ const Orders =()=>{
                 <th scope="col" className="py-3 px-6">
                   Durum
                 </th>
-
+                <th scope="col" className="py-3 px-6">
+                  Detay
+                </th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order)=>(
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700 hover:cursor-pointer">
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-700 hover:cursor-pointer">
                 <th
                   scope="row"
                   className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  dark:text-white"
@@ -57,8 +65,9 @@ const Orders =()=>{
                 <td className="py-4 px-6">{moment(order.requiredDate).locale("tr").calendar()}</td>
                 <td className="py-4 px-6">{order.orderTotal}₺</td>
                 <td className="py-4 px-6">{moment().isAfter(moment(order.requiredDate))?"Teslim edildi":"Kargoda"}</td>
-                </tr>
-              ))}
+                <td className='py-4 px-6'><Link to={`orderDetail/${order.orderId}`}><KeyboardArrowRightIcon/></Link></td>
+                </tr>  
+              ))}                
             </tbody>
           </table>
         </div>
