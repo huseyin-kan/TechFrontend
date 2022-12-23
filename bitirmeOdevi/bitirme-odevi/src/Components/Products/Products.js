@@ -77,7 +77,7 @@ const Products = () => {
         </div>
       </div>
 
-      <div  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 py-4 ">
+      <div  className="h-60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3  py-4 ">
                   <div
             className={ isAdmin?"w-full max-w-sm bg-white flex justify-center items-center rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600":"hidden"}
           >
@@ -110,11 +110,11 @@ const Products = () => {
               ><DeleteIcon/></span>
             </div>   
             <img
-              className="p-8 rounded-t-lg"
-              src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/apple-watch-ultra-og-202209_GEO_TR?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1661384392247"
+              className="p-8 rounded-t-lg h-80 w-full"
+              src={product.İmageUrl}
               alt="product"
             />
-
+              
             <div className="px-5 pb-4">
               <Link to={`product/${product.productId}`}>
                 {" "}
@@ -130,7 +130,7 @@ const Products = () => {
                 </a>
               </div>
 
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center ">
                 <span className="text-md md:text-l font-bold text-gray-900 dark:text-white">
                   {product.productPrice}₺
                 </span>
@@ -139,7 +139,7 @@ const Products = () => {
                     handleToCart(product);
                   }}
                   disabled={product.unitsInStock===0}
-                  className={product.unitsInStock===0?"text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800":"text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-sky-700 dark:focus:ring-blue-800"}
+                  className={product.unitsInStock===0?"text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800":"text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-sky-700 dark:focus:ring-blue-800"}
                 >
                   {product.unitsInStock===0?"Stok Dışı":"Sepete Ekle"}
                 </button>

@@ -6,11 +6,13 @@ const ProductInfo = () => {
   let {id}=useParams()
   const [product, setProduct] = useState({});
 
+
   useEffect(() => {
     let productService = new ProductService();
     productService
       .getProductById(id)
-      .then((result) => setProduct(result.data.data));
+      .then((result) => {setProduct(result.data.data)});
+      
   }, []);
   return (
     <div className="container absolute top-32 left-60 w-2/3 bg-gray-600/90 pb-8 rounded">
@@ -21,7 +23,7 @@ const ProductInfo = () => {
         <div className="basis-2/5 p-4 shadow">
           <img
             className="rounded-t-lg object-contain w-full h-full"
-            src="https://cdn.vatanbilgisayar.com/Upload/PRODUCT/huawei/thumb/130999-1_large.jpg"
+            src={product.İmageUrl}
             alt="info"
           />
         </div>
